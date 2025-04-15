@@ -4,9 +4,11 @@
 </script>
 
 <template>
-  <html>
-    
-  </html>
+  <body>
+    <header>
+      <h1>IFBooks</h1>
+    </header>
+  </body>
 </template>
 
 <style scoped>
