@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div class="pagina">
+<body>
   <header>
     <h1>IFBooks</h1>
     <div class="pesquisa">
@@ -39,16 +39,9 @@
       </li>
     </ul>
   </header>
-  <div class="corpo">
-
-  </div>
-  </div>
+</body>
 </template>
 
 <style scoped>
-  header h1{
-    font-size: x-large;
-    margin: 1vw 0vw 1vw 5vw;
-  }
-  
+
 </style>
