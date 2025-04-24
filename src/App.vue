@@ -57,6 +57,7 @@ function filtrar(genero) {
     )
   }
 }
+</script>
 
 
 <template>
@@ -103,13 +104,22 @@ function filtrar(genero) {
   <main>
     <div class="maisvendido">
       <h1>LIVRO MAIS VENDIDO DO MÊS</h1>
+
+    <div class="conteudo-jp">
+    <div class="texto-jp">
       <h2>Box Jurassic Park - Edição capa dura</h2>
       <h3>Este box reúne dois grandes clássicos de Michael Crichton: <br> o emblemático Jurassic Park e sua continuação, O Mundo Perdido.<br>
         Considerado pai do tecnothriller moderno, Crichton criou um universo <br> em que a genética foi capaz de clonar dinossauros extintos há milênios, <br> colocando-os em contato com seres humanos. Dessa ideia resultaram  <br> duas histórias eletrizantes, narradas com muita ação e suspense em uma <br> atmosfera tão perigosa quanto instigante.
         Os livros serviram de base para <br> o roteiro dos filmes dirigidos por Steven Spielberg, consagrando Jurassic <br> Park como um dos maiores blockbusters da história do cinema.
       </h3>
-      <img  src="@/assets/jp.jpg" alt="jurassic">
     </div>
+    <div class="imgjp"> <img src="@/assets/jp.jpg" alt="jurassic" /> </div>
+    </div>
+    
+    </div>
+
+
+    <div class="separador">
     <div class="generos">
       <button @click="filtrar('todos')">Todos</button>
       <button @click="filtrar('fantasia')">Fantasia</button>
@@ -117,6 +127,7 @@ function filtrar(genero) {
       <button @click="filtrar('distopia')">Distopia</button>
       <button @click="filtrar('ficcao')">Ficção Científica</button>
       <button @click="filtrar('terror')">Terror</button>
+    </div>
     </div>
 
     <div class="livros">
@@ -132,10 +143,11 @@ function filtrar(genero) {
   </main>
 </body>
 </template>
+
+
 <style scoped>
 </style>
 
-</script>
 
 
       
