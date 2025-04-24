@@ -1,5 +1,8 @@
 <script setup>
-  import {ref} from "vue";
+  import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {ref} from "vue";
+
+
 </script>
 
 <template>
@@ -8,7 +11,7 @@
     <h1>IFBooks</h1>
     <div class="pesquisa">
       <input type="text" placeholder="Pesquisar...">
-      <span class="fa-solid fa-magnifying-glass"></span>
+      <FontAwesomeIcon icon="magnifying-glass" class="iconePesquisa"/>
     </div>
     <div class="abas">
     <ul>
@@ -26,13 +29,15 @@
       </li>
     </ul>
     </div>
-    <ul class="icones">    
+    <ul class="icones">
       <li>
-        <a href=""><span class="fa-solid fa-cart-shopping"></span></a>
+        <a href=""><FontAwesomeIcon icon="cart-shopping" /></a>
       </li>
+      <li> |  </li>
       <li>
         <a href=""><span class="fa-solid fa-heart"></span></a>
       </li>
+      <li> |  </li>
       <li>
         <a href=""><span class="fa-solid fa-user"></span></a>
       </li>

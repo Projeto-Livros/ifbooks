@@ -69,11 +69,24 @@ header h1{
 }
 
 .pesquisa {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
+	position: relative;
+  	width: 200px;
 }
-
+.pesquisa input {
+	width: 100%;
+  	padding: 8px 35px 8px 10px; 
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	font-size: 1rem;
+}
+.iconePesquisa {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #333;
+	pointer-events: none;
+}
 .abas ul {
 	display: flex;
 	list-style: none;
@@ -96,9 +109,16 @@ header h1{
 	padding: 0;
 	margin: 0;
 }
-
+.icones li {
+	position: relative;
+	display: flex;
+	padding: 2px;
+}
 .icones a {
-	color: black;
+	content: "|";
+  	position: absolute;
+  	left: -10px;
+  	color: black;
 	font-size: 1.2rem;
 }
 .maisvendido h1 {
