@@ -58,8 +58,6 @@ function filtrar(genero) {
   }
 }
 </script>
-
-
 <template>
 <body>
   <header>
@@ -102,8 +100,8 @@ function filtrar(genero) {
 
 
   <main>
-    <div class="maisvendido">
-      <h1>LIVRO MAIS VENDIDO DO MÊS</h1>
+    <div class="recomendados">
+      <h1>RECOMENDADOS</h1>
 
     <div class="conteudo-jp">
     <div class="texto-jp">
@@ -115,7 +113,7 @@ function filtrar(genero) {
     </div>
     <div class="imgjp"> <img src="@/assets/jp.jpg" alt="jurassic" /> </div>
     </div>
-    
+
     </div>
 
 
@@ -143,11 +141,9 @@ function filtrar(genero) {
   </main>
 </body>
 </template>
-
-
 <style scoped>
 </style>
 
 
 
-      
+
