@@ -8,54 +8,76 @@
     paginaAtual.value = "carrinho";
   }
 
+  function irParaFavoritos() {
+    paginaAtual.value = "favoritos";
+  }
+
+  const emailUsuario = ref('');
+  const inscrito = ref(false);
+
+  function inscreverEmail() {
+    if (emailUsuario.value.trim() !== '') {
+      inscrito.value = true;
+    }
+  }
+
+
   function irParaHome() {
     paginaAtual.value = "home";
   }
+
+
+
+
+
+
   const livros = ref([
-  { titulo: 'Conectadas', genero: 'romance'},
-  { titulo: 'Canção dos Ossos', genero: 'romance' },
-  { titulo: 'Algumas garotas são assim', genero: 'romance' },
-  { titulo: 'Sua Alteza Real', genero: 'romance' },
-  { titulo: 'Lembre-se de Nós', genero: 'romance' },
-  { titulo: 'Os Sete Maridos de Evelyn Hugo', genero: 'romance' },
-  { titulo: 'A Noite Passada no Telegraph Club', genero: 'romance' },
-  { titulo: 'Luzes do Norte', genero: 'romance' },
-  { titulo: 'Sombras do Sul', genero: 'romance' },
-  { titulo: 'Fogo & Estrelas', genero: 'romance' },
-  { titulo: 'Gelo & Sombras', genero: 'romance' },
-  { titulo: 'Box O Senhor dos Anéis', genero: 'fantasia' },
-  { titulo: 'As Crônicas de Nárnia', genero: 'fantasia' },
-  { titulo: 'Box Harry Potter', genero: 'fantasia' },
-  { titulo: 'Cidade dos Ossos', genero: 'fantasia' },
-  { titulo: 'O Nome do Vento', genero: 'fantasia' },
-  { titulo: 'Eragon', genero: 'fantasia' },
-  { titulo: 'A Canção do Sangue', genero: 'fantasia' },
-  { titulo: 'Ciclo da Herança', genero: 'fantasia' },
-  { titulo: '1984', genero: 'ficcao' },
-  { titulo: 'Eu, Robô', genero: 'ficcao' },
-  { titulo: 'Box Duna', genero: 'ficcao' },
-  { titulo: 'A Guerra dos Mundos', genero: 'ficcao' },
-  { titulo: 'Contato', genero: 'ficcao' },
-  { titulo: 'Perdido em Marte', genero: 'ficcao' },
-  { titulo: 'Estação 11', genero: 'ficcao' },
-  { titulo: 'Box Jurassic Park', genero: 'ficcao' },
-  { titulo: 'Divergente', genero: 'distopia' },
-  { titulo: 'Jogos Vorazes', genero: 'distopia' },
-  { titulo: 'Maze Runner', genero: 'distopia' },
-  { titulo: 'Vox', genero: 'distopia' },
-  { titulo: 'O Homem do Castelo Alto', genero: 'distopia' },
-  { titulo: 'O Último Homem', genero: 'distopia' },
-  { titulo: 'A Estrada', genero: 'distopia' },
-  { titulo: 'Revolução dos Bichos', genero: 'distopia' },
-  { titulo: 'It: A Coisa', genero: 'terror' },
-  { titulo: 'O Iluminado', genero: 'terror' },
-  { titulo: 'Carrie, A Estranha', genero: 'terror' },
-  { titulo: 'O Exorcista', genero: 'terror' },
-  { titulo: 'O Silêncio dos Inocentes', genero: 'terror' },
-  { titulo: 'Coraline', genero: 'terror' },
-  { titulo: 'O Grito', genero: 'terror' },
-  { titulo: 'O Labirinto', genero: 'terror' },
-])
+    { titulo: 'Conectadas', genero: 'romance', preco: 39.90 },
+    { titulo: 'Canção dos Ossos', genero: 'romance', preco: 42.50 },
+    { titulo: 'Algumas garotas são assim', genero: 'romance', preco: 35.00 },
+    { titulo: 'Sua Alteza Real', genero: 'romance', preco: 45.90 },
+    { titulo: 'Lembre-se de Nós', genero: 'romance', preco: 37.80 },
+    { titulo: 'Os Sete Maridos de Evelyn Hugo', genero: 'romance', preco: 49.90 },
+    { titulo: 'A Noite Passada no Telegraph Club', genero: 'romance', preco: 43.00 },
+    { titulo: 'Luzes do Norte', genero: 'romance', preco: 38.50 },
+    { titulo: 'Sombras do Sul', genero: 'romance', preco: 38.50 },
+    { titulo: 'Fogo & Estrelas', genero: 'romance', preco: 41.90 },
+    { titulo: 'Gelo & Sombras', genero: 'romance', preco: 41.90 },
+    { titulo: 'Box O Senhor dos Anéis', genero: 'fantasia', preco: 149.90 },
+    { titulo: 'As Crônicas de Nárnia', genero: 'fantasia', preco: 89.90 },
+    { titulo: 'Box Harry Potter', genero: 'fantasia', preco: 189.90 },
+    { titulo: 'Cidade dos Ossos', genero: 'fantasia', preco: 39.90 },
+    { titulo: 'O Nome do Vento', genero: 'fantasia', preco: 54.90 },
+    { titulo: 'Eragon', genero: 'fantasia', preco: 49.90 },
+    { titulo: 'A Canção do Sangue', genero: 'fantasia', preco: 44.90 },
+    { titulo: 'Ciclo da Herança', genero: 'fantasia', preco: 139.90 },
+    { titulo: '1984', genero: 'ficcao', preco: 29.90 },
+    { titulo: 'Eu, Robô', genero: 'ficcao', preco: 34.90 },
+    { titulo: 'Box Duna', genero: 'ficcao', preco: 219.90 },
+    { titulo: 'A Guerra dos Mundos', genero: 'ficcao', preco: 28.90 },
+    { titulo: 'Contato', genero: 'ficcao', preco: 33.50 },
+    { titulo: 'Perdido em Marte', genero: 'ficcao', preco: 41.90 },
+    { titulo: 'Estação 11', genero: 'ficcao', preco: 36.00 },
+    { titulo: 'Box Jurassic Park', genero: 'ficcao', preco: 79.90 },
+    { titulo: 'Divergente', genero: 'distopia', preco: 34.90 },
+    { titulo: 'Jogos Vorazes', genero: 'distopia', preco: 38.50 },
+    { titulo: 'Maze Runner', genero: 'distopia', preco: 39.90 },
+    { titulo: 'Vox', genero: 'distopia', preco: 41.50 },
+    { titulo: 'O Homem do Castelo Alto', genero: 'distopia', preco: 36.90 },
+    { titulo: 'O Último Homem', genero: 'distopia', preco: 35.90 },
+    { titulo: 'A Estrada', genero: 'distopia', preco: 32.50 },
+    { titulo: 'Revolução dos Bichos', genero: 'distopia', preco: 25.90 },
+    { titulo: 'It: A Coisa', genero: 'terror', preco: 64.90 },
+    { titulo: 'O Iluminado', genero: 'terror', preco: 59.90 },
+    { titulo: 'Carrie, A Estranha', genero: 'terror', preco: 44.90 },
+    { titulo: 'O Exorcista', genero: 'terror', preco: 49.90 },
+    { titulo: 'O Silêncio dos Inocentes', genero: 'terror', preco: 39.90 },
+    { titulo: 'Coraline', genero: 'terror', preco: 29.90 },
+    { titulo: 'O Grito', genero: 'terror', preco: 33.90 },
+    { titulo: 'O Labirinto', genero: 'terror', preco: 35.90 },
+  ])
+
+
 const livro = ref([
   {
     titulo: '1984',
@@ -147,6 +169,10 @@ onMounted(() => {
   setInterval(proximoLivro, 5000)
 })
 </script>
+
+
+
+
 <template>
 <body>
   <header>
@@ -177,7 +203,7 @@ onMounted(() => {
       </li>
       <li> |  </li>
       <li>
-        <a href="/favoritos"><span class="fa-solid fa-heart"></span></a>
+        <a href="#" class="icon-btn" @click.prevent="irParaFavoritos"><span class="fa-solid fa-heart"></span></a>
       </li>
       <li> |  </li>
       <li>
@@ -191,6 +217,14 @@ onMounted(() => {
       <p>Seu carrinho está vazio por enquanto.</p>
       <button @click="irParaHome">Voltar</button>
     </div>
+
+    <div v-else-if="paginaAtual === 'favoritos'" class="pagina-favoritos">
+      <h2>Favoritos</h2>
+      <p>Aqui vão aparecer seus livros favoritos futuramente!</p>
+      <button @click="irParaHome">Voltar</button>
+    </div>
+
+
 
   <main v-else>
     <div class="recomendados">
@@ -214,7 +248,7 @@ onMounted(() => {
       <button @click="voltarLivro">Anterior</button>
       <button @click="proximoLivro">Próximo</button>
     </div>
-  </div>
+    </div>
 
 
     <div class="separador">
@@ -229,16 +263,27 @@ onMounted(() => {
     </div>
 
     <div class="livros">
-      <div
-        v-for="livro in livrosFiltrados"
-        :key="livro.titulo"
-        class="livro"
-      >
-      <img :src="livro.imagem" :alt="livro.titulo" class="capa" />
-        <p>{{ livro.titulo }} ({{ livro.genero }})</p>
-      </div>
+    <div
+      v-for="livro in livrosFiltrados"
+      :key="livro.titulo"
+      class="livro">
+      <img :src="livro.imagem || '@/assets/placeholder.png'" :alt="livro.titulo" class="capa" />
+      <p class="titulo">{{ livro.titulo }}</p>
+      <p class="genero">({{ livro.genero }})</p>
+      <p class="preco">
+        <span v-if="inscrito">
+        <s>R$ {{ livro.preco.toFixed(2) }}</s> <strong>R$ {{ (livro.preco * 0.9).toFixed(2) }}</strong>
+        </span>
+        <span v-else>
+          <strong>R$ {{ livro.preco.toFixed(2) }}</strong>
+        </span>
+      </p>
+    </div>
     </div>
   </main>
+
+
+
   <footer>
 
     <div class="redessociais">
@@ -260,8 +305,16 @@ onMounted(() => {
     </div>
 
     <div class="inscrevase">
-      <input type="text" placeholder="Insira seu email">
-      <button>Inscreva-se</button>
+    <template v-if="!inscrito">
+      <input
+        type="email"
+        placeholder="Insira seu email"
+        v-model="emailUsuario"/>
+      <button @click="inscreverEmail">Inscreva-se</button>
+    </template>
+    <template v-else>
+      <p class="confirmacao">🎉 Parabéns! Você ganhou 10% de desconto!</p>
+    </template>
     </div>
 
     <div class="nome">
