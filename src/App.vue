@@ -27,6 +27,28 @@
   }
 
 
+  const carrinho = ref([]);
+  const favoritos = ref([]);
+
+  function adicionarAoCarrinho(livro) {
+    if (!carrinho.value.includes(livro)) {
+      carrinho.value.push(livro);
+    }
+  }
+
+  function adicionarAosFavoritos(livro) {
+    if (!favoritos.value.includes(livro)) {
+      favoritos.value.push(livro);
+    }
+  }
+
+  function livroNoCarrinho(livro) {
+    return carrinho.value.includes(livro);
+  }
+
+  function livroNosFavoritos(livro) {
+    return favoritos.value.includes(livro);
+  }
 
 
 
@@ -171,8 +193,6 @@ onMounted(() => {
 </script>
 
 
-
-
 <template>
 <body>
   <header>
@@ -244,7 +264,7 @@ onMounted(() => {
       />
     </div>
 
-    <div class="botoes">
+    <div class="bts">
       <button @click="voltarLivro">Anterior</button>
       <button @click="proximoLivro">Próximo</button>
     </div>
@@ -272,12 +292,22 @@ onMounted(() => {
       <p class="genero">({{ livro.genero }})</p>
       <p class="preco">
         <span v-if="inscrito">
-        <s>R$ {{ livro.preco.toFixed(2) }}</s> <strong>R$ {{ (livro.preco * 0.9).toFixed(2) }}</strong>
+          <s>R$ {{ livro.preco.toFixed(2) }}</s> <strong>R$ {{ (livro.preco * 0.9).toFixed(2) }}</strong>
         </span>
         <span v-else>
           <strong>R$ {{ livro.preco.toFixed(2) }}</strong>
         </span>
       </p>
+
+    <div class="botoes">
+      <button @click="adicionarAoCarrinho(livro)" :disabled="livroNoCarrinho(livro)">
+        {{ livroNoCarrinho(livro) ? "Adicionado ✅" : "Adicionar ao Carrinho 🛒" }}
+      </button>
+
+      <button class="favoritar" @click="adicionarAosFavoritos(livro)">
+        <span :class="['fa-heart', livroNosFavoritos(livro) ? 'favoritado' : '']"></span>
+      </button>
+    </div>
     </div>
     </div>
   </main>
