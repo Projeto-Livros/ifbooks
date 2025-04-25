@@ -1,6 +1,19 @@
 <script setup>
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import {ref} from "vue";
+  import {ref} from "vue";
+
+  const paginaAtual = ref("home");
+
+  function irParaCarrinho() {
+    paginaAtual.value = "carrinho";
+  }
+
+  function irParaHome() {
+    paginaAtual.value = "home";
+  }
+
+
+
   const livros = ref([
   { titulo: 'Conectadas', genero: 'romance'},
   { titulo: 'Canção dos Ossos', genero: 'romance' },
@@ -84,11 +97,11 @@ function filtrar(genero) {
     </div>
     <ul class="icones">
       <li>
-        <a href=""><FontAwesomeIcon icon="cart-shopping" /></a>
+        <a href="#" class="icon-btn" @click.prevent="irParaCarrinho"><FontAwesomeIcon icon="cart-shopping" /></a>
       </li>
       <li> |  </li>
       <li>
-        <a href=""><span class="fa-solid fa-heart"></span></a>
+        <a href="/favoritos"><span class="fa-solid fa-heart"></span></a>
       </li>
       <li> |  </li>
       <li>
@@ -97,9 +110,14 @@ function filtrar(genero) {
     </ul>
   </header>
 
+    <div v-if="paginaAtual === 'carrinho'" class="pagina-carrinho">
+      <h2>🛒 Carrinho de Compras</h2>
+      <p>Seu carrinho está vazio por enquanto.</p>
+      <button @click="irParaHome">Voltar</button>
+    </div>
 
+  <main v-else>
 
-  <main>
     <div class="recomendados">
       <h1>RECOMENDADOS</h1>
 
