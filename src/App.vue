@@ -142,6 +142,7 @@ function filtrar(genero) {
     </div>
   </main>
   <footer>
+
     <div class="redessociais">
       <span class="fa-brands fa-square-instagram"></span>
       <span class="fa-brands fa-square-facebook"></span>
@@ -149,16 +150,36 @@ function filtrar(genero) {
     </div>
 
     <div class="contato">
-      <h4>CONTATO:</h4> 
       <ul>
+        <li><h4>CONTATO:</h4></li>
         <li>
-          <span class="fa-solid fa-clock">9h ás 19h - Seg a Sex</span>
+          <span class="fa-solid fa-clock"> 9h ás 19h - Seg a Sex</span>
         </li>
         <li>
-          <span class="fa-solid fa-envelope">livros&letras@gmail.com</span>
+          <span class="fa-solid fa-envelope"> livros&letras@gmail.com</span>
         </li>
       </ul>
     </div>
+
+    <div class="inscrevase">
+      <input type="text" placeholder="Insira seu email">
+      <button>Inscreva-se</button>
+    </div>
+
+    <div class="nome"> 
+      <ul>
+        <li>
+          <h2>Livros</h2>
+        </li>
+        <li>
+          <h2>&</h2>
+        </li>
+        <li>
+          <h2>Letras</h2>
+        </li>
+      </ul>
+    </div>
+
   </footer>
 </body>
 </template>
