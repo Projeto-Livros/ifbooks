@@ -1,6 +1,6 @@
 <script setup>
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-  import {ref} from "vue";
+  import { ref, computed, onMounted } from 'vue'
 
   const paginaAtual = ref("home");
 
@@ -11,9 +11,6 @@
   function irParaHome() {
     paginaAtual.value = "home";
   }
-
-
-
   const livros = ref([
   { titulo: 'Conectadas', genero: 'romance'},
   { titulo: 'Canção dos Ossos', genero: 'romance' },
@@ -59,6 +56,82 @@
   { titulo: 'O Grito', genero: 'terror' },
   { titulo: 'O Labirinto', genero: 'terror' },
 ])
+const livro = ref([
+  {
+    titulo: '1984',
+    autor: `George Orwell`,
+    descricao: 'Num futuro distópico, o mundo é controlado por um regime totalitário liderado pelo Grande Irmão. Winston Smith trabalha para o governo, mas começa a questionar o sistema opressor e busca liberdade. O livro mostra como a vigilância e a manipulação da verdade podem destruir a individualidade.',
+    imagem: new URL('@/assets/images/1984.jpg', import.meta.url).href
+  },
+  {
+    titulo: `Conectadas`,
+    autor: `Clara Alves`,
+    descricao: `Um romance contemporâneo brasileiro sobre duas garotas, Raíssa e Ayla, que se conhecem e se apaixonam através de um jogo online. A história fala de amizade, descoberta pessoal e amor LGBT+, tudo de um jeito leve, fofo e muito próximo da realidade dos jovens de hoje.` ,
+    imagem: new URL('@/assets/images/conectadas.jpg', import.meta.url).href
+  },
+  {
+    titulo: 'Carrie, A Estranha',
+    autor: `Stephen King`,
+    descricao: 'Carrie é uma adolescente tímida e atormentada pelos colegas e pela mãe fanática religiosa. Ela descobre que tem poderes telecinéticos e, após uma humilhação cruel no baile da escola, perde o controle e causa uma tragédia.',
+    imagem: new URL('@/assets/images/carrie_a_estranha.jpg', import.meta.url).href
+  },
+  {
+    titulo: `Os Sete Maridos de Evelyn Hugo`,
+    autor: `Taylor Jenkins Reid`,
+    descricao: `Evelyn Hugo, uma lendária estrela de Hollywood, finalmente decide contar a verdadeira história de sua vida: seus amores, seus segredos e seus sete casamentos. É uma narrativa emocionante sobre fama, ambição, paixão e identidade, cheia de reviravoltas e momentos intensos.` ,
+    imagem: new URL('@/assets/images/os_sete_maridos_de_evelyn_hugo.jpg', import.meta.url).href
+  },
+  {
+    titulo: `A Noite Passada no Telegraph Club`,
+    autor: `Melinda Lo`,
+    descricao: `Ambientado nos anos 1950, Lily é uma jovem chinesa-americana que descobre sua sexualidade quando conhece Kath em um clube LGBT secreto. O livro mostra o medo, os riscos e a coragem de viver um amor proibido naquela época.`,
+    imagem: new URL('@/assets/images/a_noite_passada_no_telegraph_club.jpg', import.meta.url).href
+  },
+  {
+    titulo: `It: A Coisa`,
+    autor: `Stephen King`,
+    descricao: `Um grupo de amigos enfrenta um ser maligno que assume a forma de seus piores medos, geralmente aparecendo como o palhaço Pennywise. Eles lutam contra a criatura quando crianças e, depois, precisam enfrentá-la novamente como adultos.` ,
+    imagem: new URL('@/assets/images/it_a_coisa.jpg', import.meta.url).href
+  },
+  {
+    titulo: 'Revolução dos Bichos',
+    autor: `George Orwell`,
+    descricao: 'Animais de uma fazenda se rebelam contra os humanos e criam seu próprio sistema de governo. Com o tempo, os porcos tomam o poder e passam a agir como os antigos opressores, mostrando como ideais podem ser corrompidos.',
+    imagem: new URL('@/assets/images/revolucao_dos_bichos.jpeg', import.meta.url).href
+  },
+  {
+    titulo: 'As Cronicas de Narnia ',
+    autor: `C.S. Lewis`,
+    descricao: 'Uma coletânea de sete histórias que se passam no mundo mágico de Nárnia, onde animais falam, há bruxas, leões e batalhas épicas entre o bem e o mal. É uma fantasia cheia de aventura e simbolismo cristão.',
+    imagem: new URL('@/assets/images/as_cronicas_de_narnia.jpg', import.meta.url).href
+  },
+  {
+    titulo: 'Contato',
+    autor: `Carl Sagan`,
+    descricao: 'A cientista Ellie Arroway capta uma mensagem de uma civilização alienígena e lidera uma missão para fazer contato com eles. O livro mistura ciência, filosofia e religião, questionando o lugar da humanidade no universo.',
+    imagem: new URL('@/assets/images/contato.jpg', import.meta.url).href
+  },
+  {
+    titulo: 'Coraline',
+    autor: `Neil Gaiman`,
+    descricao: 'Coraline descobre uma porta secreta em sua casa que leva a um mundo paralelo, onde tudo parece melhor – até demais. Lá, sua "outra mãe" quer prendê-la para sempre. Coraline precisa ser corajosa para salvar a si mesma e sua família.',
+    imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href
+  }
+
+])
+const indiceAtual = ref(0)
+
+const livroAtual = computed(() => livro.value[indiceAtual.value])
+
+function proximoLivro() {
+  indiceAtual.value = (indiceAtual.value + 1) % livro.value.length
+}
+
+function voltarLivro() {
+  indiceAtual.value =
+    (indiceAtual.value - 1 + livros.value.length) % livros.value.length
+}
+
 const livrosFiltrados = ref([...livros.value])
 
 function filtrar(genero) {
@@ -70,6 +143,9 @@ function filtrar(genero) {
     )
   }
 }
+onMounted(() => {
+  setInterval(proximoLivro, 5000)
+})
 </script>
 <template>
 <body>
@@ -117,22 +193,28 @@ function filtrar(genero) {
     </div>
 
   <main v-else>
-
     <div class="recomendados">
-      <h1>RECOMENDADOS</h1>
+    <h2>Recomendados</h2>
 
-    <div class="conteudo-jp">
-    <div class="texto-jp">
-      <h2>Box Jurassic Park - Edição capa dura</h2>
-      <h3>Este box reúne dois grandes clássicos de Michael Crichton: <br> o emblemático Jurassic Park e sua continuação, O Mundo Perdido.<br>
-        Considerado pai do tecnothriller moderno, Crichton criou um universo <br> em que a genética foi capaz de clonar dinossauros extintos há milênios, <br> colocando-os em contato com seres humanos. Dessa ideia resultaram  <br> duas histórias eletrizantes, narradas com muita ação e suspense em uma <br> atmosfera tão perigosa quanto instigante.
-        Os livros serviram de base para <br> o roteiro dos filmes dirigidos por Steven Spielberg, consagrando Jurassic <br> Park como um dos maiores blockbusters da história do cinema.
-      </h3>
-    </div>
-    <div class="imgjp"> <img src="@/assets/jp.jpg" alt="jurassic" /> </div>
+    <div class="livro-container">
+      <div class="livro-info">
+        <h3>{{ livroAtual.titulo }}</h3>
+        <h4>por {{ livroAtual.autor }}</h4>
+        <p>{{ livroAtual.descricao }}</p>
+      </div>
+
+      <img
+        :src="livroAtual.imagem"
+        :alt="livroAtual.titulo"
+        class="capa"
+      />
     </div>
 
+    <div class="botoes">
+      <button @click="voltarLivro">Anterior</button>
+      <button @click="proximoLivro">Próximo</button>
     </div>
+  </div>
 
 
     <div class="separador">
@@ -182,7 +264,7 @@ function filtrar(genero) {
       <button>Inscreva-se</button>
     </div>
 
-    <div class="nome"> 
+    <div class="nome">
       <ul>
         <li>
           <h2>Livros</h2>
