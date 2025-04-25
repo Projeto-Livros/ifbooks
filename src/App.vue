@@ -141,6 +141,25 @@ function filtrar(genero) {
       </div>
     </div>
   </main>
+  <footer>
+    <div class="redessociais">
+      <span class="fa-brands fa-square-instagram"></span>
+      <span class="fa-brands fa-square-facebook"></span>
+      <span class="fa-brands fa-square-twitter"></span>
+    </div>
+
+    <div class="contato">
+      <h4>CONTATO:</h4> 
+      <ul>
+        <li>
+          <span class="fa-solid fa-clock">9h ás 19h - Seg a Sex</span>
+        </li>
+        <li>
+          <span class="fa-solid fa-envelope">livros&letras@gmail.com</span>
+        </li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </template>
 

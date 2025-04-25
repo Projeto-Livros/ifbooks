@@ -177,3 +177,27 @@ header h1{
 	margin: 0 3vw 0 3.1vw;
 	font-size: 20px;
 }
+footer {
+	background-color: #cfa3c1;
+}
+.redessociais {
+	margin: 2vw 2vw 2vw 2vw;
+	padding: 2vw;
+}
+.redessociais span {
+	padding: 10px;
+	font-size: 2vw;
+}
+.contato li{
+	display: flex;
+	justify-content: right;
+	padding: 2vw;
+	margin: 0 10px;
+}
+
+.contato h4 {
+	display: flex;
+	justify-content: right;
+	margin: 0 15.5vw 3vw;
+	font-size: 1.5rem;
+}
