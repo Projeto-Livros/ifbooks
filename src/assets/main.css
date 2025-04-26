@@ -155,6 +155,7 @@ header h1{
   color: #777;
   margin-top: 5px;
   margin-bottom: 30px;
+  font-size: 1.2vw;
 }
 .recomendados img {
   width: 200px;
@@ -204,21 +205,21 @@ header h1{
 	margin: 2vw 0;
 }
 .generos button{
-	border-radius: 50px;
-	background-color: #cfa3c1;
-	padding: 1vw 2vw 1vw 2vw;
-	border: none;
-	display: flex;
-	margin: 0 3vw 0 3.1vw;
-	font-size: 20px;
-	cursor: pointer;
-	transition: all 0.3s ease;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #ad7b90;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .generos button:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 .livros {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -248,7 +249,7 @@ header h1{
   }
 
   .titulo {
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	font-weight: bold;
 	margin: 0.5rem 0 0.2rem 0;
   }
@@ -257,10 +258,12 @@ header h1{
 	font-size: 0.9rem;
 	color: #777;
 	margin-bottom: 0.5rem;
+  font-style: italic;
+  margin: 0 0 1rem 0;
   }
 
   .preco {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	margin-top: 0.5rem;
   }
 
