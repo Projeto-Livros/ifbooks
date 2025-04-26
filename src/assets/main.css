@@ -422,6 +422,65 @@ footer > div {
 
 /*-----------------CARRINHO----------------*/
 
+.item-carrinho {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #fff0f5;
+	margin-bottom: 20px;
+	padding: 20px;
+	border-radius: 12px;
+}
+  
+.imagem-livro {
+	width: 100px;
+	height: auto;
+	border-radius: 8px;
+	margin-right: 20px;
+}
+  
+.info-livro {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 1;
+}
+  
+.botoes-carrinho {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+  
+.botoes-carrinho button {
+	background-color: #b22222;
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 8px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+  
+.botoes-carrinho button:hover {
+	background-color: #8b0000;
+}
+  
+.quantidade-control {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+  
+.quantidade-control p {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin: 0;
+}
+  
+
 .pagina-carrinho {
 	padding: 40px 20px;
 	max-width: 800px;
@@ -433,13 +492,18 @@ footer > div {
 	margin-top: 40px;
 }
 
+.pagina-carrinho img {
+	width: 10vw;
+	display: flex;
+}
+
 .pagina-carrinho h2 {
 	font-size: 2rem;
 	color: #b22222;
 	margin-bottom: 20px;
 }
 
-  .pagina-carrinho p {
+.pagina-carrinho p {
 	font-size: 1.2rem;
 	color: #444;
 	margin-bottom: 30px;
@@ -459,6 +523,29 @@ footer > div {
 .pagina-carrinho button:hover {
 	background-color: #8b0000;
 }
+
+.total-voltar {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem; 
+}
+  
+
+.quantidade-control {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+  
+.quantidade-control p {
+	width: 30px; 
+	text-align: center; 
+	margin: 0;
+}
+  
 
 /*-----------------FAV--------------------*/
 

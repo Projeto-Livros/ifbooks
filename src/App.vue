@@ -32,10 +32,35 @@
   const favoritos = ref([]);
 
   function adicionarAoCarrinho(livro) {
-    if (!carrinho.value.includes(livro)) {
-      carrinho.value.push(livro);
+  const item = carrinho.value.find(item => item.livro.id === livro.id);
+    if (item) {
+      item.quantidade++;
+    } else {
+     carrinho.value.push({ livro, quantidade: 1 });
+    }
+  } 
+
+  function removerDoCarrinho(livro) {
+    carrinho.value = carrinho.value.filter(item => item.livro.id !== livro.id);
+  }
+
+  function aumentarQuantidade(livro) {
+  const item = carrinho.value.find(item => item.livro.id === livro.id);
+    if (item) item.quantidade++;
+  }
+
+  function diminuirQuantidade(livro) {
+  const item = carrinho.value.find(item =>  item.livro.id === livro.id);
+    if (item && item.quantidade > 1) {
+      item.quantidade--;
+    } else {
+    removerDoCarrinho(livro);
     }
   }
+  const totalCarrinho = computed(() =>
+    carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0)
+  );
+
 
   function adicionarAosFavoritos(livro) {
     if (!favoritos.value.includes(livro)) {
@@ -55,46 +80,47 @@
 
 
   const livros = ref([
-    { titulo: 'Conectadas', autor: 'Clara Alves', genero: 'romance', preco: 39.90, imagem: new URL('@/assets/images/conectadas.jpg', import.meta.url).href},
-    { titulo: 'Canção dos Ossos', autor: 'Giu Domingues',genero: 'romance', preco: 42.50, imagem: new URL('@/assets/images/cancao_dos_ossos.jpg', import.meta.url).href },
-    { titulo: 'Algumas garotas são assim', autor: 'Jennifer Dugan', genero: 'romance', preco: 35.00, imagem: new URL('@/assets/images/algumas_garotas_sao_assim.jpg', import.meta.url).href },
-    { titulo: 'Sua Alteza Real', autor: 'Rachel Hawkins', genero: 'romance', preco: 45.90, imagem: new URL('@/assets/images/sua_alteza_real.jpg', import.meta.url).href },
-    { titulo: 'Lembre-se de Nós', autor: 'Alyson Derrick', genero: 'romance', preco: 37.80, imagem: new URL('@/assets/images/lembre-se_de_nos.jpg', import.meta.url).href },
-    { titulo: 'Os Sete Maridos de Evelyn Hugo',autor: 'Taylor Jenkins Reid', genero: 'romance', preco: 49.90, imagem: new URL('@/assets/images/os_sete_maridos_de_evelyn_hugo.jpg', import.meta.url).href },
-    { titulo: 'A Noite Passada no Telegraph Club', autor: 'Melinda Lo',genero: 'romance', preco: 43.00, imagem: new URL('@/assets/images/a_noite_passada_no_telegraph_club.jpg', import.meta.url).href },
-    { titulo: 'Luzes do Norte', autor: 'Giu Domingues',genero: 'romance', preco: 38.50, imagem: new URL('@/assets/images/luzes_do_norte.jpg', import.meta.url).href },
-    { titulo: 'Sombras do Sul', autor: 'Giu Domingues',genero: 'romance', preco: 38.50, imagem: new URL('@/assets/images/sombras_do_sul.jpg', import.meta.url).href },
-    { titulo: 'Fogo & Estrelas', autor: 'Audrey Coulthurst',genero: 'romance', preco: 41.90, imagem: new URL('@/assets/images/fogo_e_estrelas.jpg', import.meta.url).href },
-    { titulo: 'Gelo & Sombras', autor: 'Audrey Coulthurst',genero: 'romance', preco: 41.90, imagem: new URL('@/assets/images/gelo_e_sombras.jpg', import.meta.url).href },
-    { titulo: 'Box O Senhor dos Anéis', autor: 'J.R.R. Tolkien',genero: 'fantasia', preco: 149.90, imagem: new URL('@/assets/images/senhor_dos_aneis.jpg', import.meta.url).href },
-    { titulo: 'As Crônicas de Nárnia', autor: 'C.S. Lewis',genero: 'fantasia', preco: 89.90, imagem: new URL('@/assets/images/as_cronicas_de_narnia.jpg', import.meta.url).href },
-    { titulo: 'Box Harry Potter', autor: 'J.K. Rowling',genero: 'fantasia', preco: 189.90, imagem: new URL('@/assets/images/harry_potter.jpg', import.meta.url).href },
-    { titulo: 'Box Instrumentos Mortais', autor: 'Cassandra Clare',genero: 'fantasia', preco: 39.90, imagem: new URL('@/assets/images/instrumentos_mortais.jpg', import.meta.url).href },
-    { titulo: 'O Nome do Vento', autor: 'Patrick Rothfuss',genero: 'fantasia', preco: 54.90, imagem: new URL('@/assets/images/o_nome_do_vento.jpg', import.meta.url).href },
-    { titulo: 'Ciclo da Herança', autor: 'Christopher Paolini',genero: 'fantasia', preco: 139.90, imagem: new URL('@/assets/images/ciclo_a_herança.jpg', import.meta.url).href },
-    { titulo: '1984',autor: 'George Orwell', genero: 'ficcao', preco: 29.90, imagem: new URL('@/assets/images/1984.jpg', import.meta.url).href },
-    { titulo: 'Eu, Robô', autor: 'Isaac Asimov',genero: 'ficcao', preco: 34.90, imagem: new URL('@/assets/images/eu_robo.jpg', import.meta.url).href },
-    { titulo: 'Box Duna', autor: 'Frank Herbert',genero: 'ficcao', preco: 219.90, imagem: new URL('@/assets/images/duna.jpg', import.meta.url).href },
-    { titulo: 'A Guerra dos Mundos', autor: 'H.G. Wells',genero: 'ficcao', preco: 28.90, imagem: new URL('@/assets/images/a_guerra_dos_mundos.jpg', import.meta.url).href },
-    { titulo: 'Contato', autor: 'Carl Sagan',genero: 'ficcao', preco: 33.50, imagem: new URL('@/assets/images/contato.jpg', import.meta.url).href },
-    { titulo: 'Perdido em Marte', autor: 'Andy Weir',genero: 'ficcao', preco: 41.90, imagem: new URL('@/assets/images/perdido_em_marte.jpg', import.meta.url).href },
-    { titulo: 'Estação 11', autor: 'Emily St. John Mandel ',genero: 'ficcao', preco: 36.00, imagem: new URL('@/assets/images/estacao_11.jpg', import.meta.url).href },
-    { titulo: 'Box Jurassic Park', autor: 'Michael Crichton',genero: 'ficcao', preco: 79.90, imagem: new URL('@/assets/images/jp.jpg', import.meta.url).href },
-    { titulo: 'Divergente', autor: 'Veronica Roth',genero: 'distopia', preco: 34.90, imagem: new URL('@/assets/images/divergente.jpg', import.meta.url).href },
-    { titulo: 'Jogos Vorazes', autor: 'Suzanne Collins',genero: 'distopia', preco: 38.50, imagem: new URL('@/assets/images/jogos_vorazes.jpg', import.meta.url).href },
-    { titulo: 'Maze Runner', autor: 'James Dashner',genero: 'distopia', preco: 39.90, imagem: new URL('@/assets/images/maze_runner.jpg', import.meta.url).href },
-    { titulo: 'Vox', autor: 'Christina Dalcher',genero: 'distopia', preco: 41.50, imagem: new URL('@/assets/images/vox.jpg', import.meta.url).href },
-    { titulo: 'O Homem do Castelo Alto', autor: 'Philip K. Dick',genero: 'distopia', preco: 36.90, imagem: new URL('@/assets/images/o_homem_do_castelo_alto.jpg', import.meta.url).href },
-    { titulo: 'O Último Homem', autor: 'Mary Shelley',genero: 'distopia', preco: 35.90, imagem: new URL('@/assets/images/o_ultimo_homem.jpg', import.meta.url).href },
-    { titulo: 'A Estrada', autor: 'Cormac McCarthy',genero: 'distopia', preco: 32.50, imagem: new URL('@/assets/images/a_estrada.jpg', import.meta.url).href },
-    { titulo: 'Revolução dos Bichos', autor: 'George Orwell',genero: 'distopia', preco: 25.90, imagem: new URL('@/assets/images/revolucao_dos_bichos.jpeg', import.meta.url).href },
-    { titulo: 'It: A Coisa', autor: 'Stephen king',genero: 'terror', preco: 64.90, imagem: new URL('@/assets/images/it_a_coisa.jpg', import.meta.url).href },
-    { titulo: 'O Iluminado', autor: 'Stephen King',genero: 'terror', preco: 59.90, imagem: new URL('@/assets/images/o_iluminado.jpg', import.meta.url).href },
-    { titulo: 'Carrie, A Estranha', autor: 'Stephen King',genero: 'terror', preco: 44.90, imagem: new URL('@/assets/images/carrie_a_estranha.jpg', import.meta.url).href },
-    { titulo: 'O Exorcista', autor: 'William Peter Blatty',genero: 'terror', preco: 49.90, imagem: new URL('@/assets/images/o_exorcista.jpg', import.meta.url).href },
-    { titulo: 'O Silêncio dos Inocentes', autor: 'Thomas Harris',genero: 'terror', preco: 39.90, imagem: new URL('@/assets/images/o_silencio_dos_inocentes.jpg', import.meta.url).href },
-    { titulo: 'Coraline', autor: 'Neil Gaiman',genero: 'terror', preco: 29.90, imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href },
-    { titulo: 'O Labirinto', autor: 'Kate Mosse',genero: 'terror', preco: 35.90, imagem: new URL('@/assets/images/o_labirinto.jpg', import.meta.url).href },
+    
+    { id: '101', titulo: 'Conectadas', autor: 'Clara Alves', genero: 'romance', preco: 64.90, imagem: new URL('@/assets/images/conectadas.jpg', import.meta.url).href},
+    { id: '102', titulo: 'Canção dos Ossos', autor: 'Giu Domingues',genero: 'romance', preco: 64.90, imagem: new URL('@/assets/images/cancao_dos_ossos.jpg', import.meta.url).href },
+    { id: '103', titulo: 'Algumas garotas são assim', autor: 'Jennifer Dugan', genero: 'romance', preco: 34.90, imagem: new URL('@/assets/images/algumas_garotas_sao_assim.jpg', import.meta.url).href },
+    { id: '104', titulo: 'Sua Alteza Real', autor: 'Rachel Hawkins', genero: 'romance', preco: 33.73, imagem: new URL('@/assets/images/sua_alteza_real.jpg', import.meta.url).href },
+    { id: '105', titulo: 'Lembre-se de Nós', autor: 'Alyson Derrick', genero: 'romance', preco: 43.92, imagem: new URL('@/assets/images/lembre-se_de_nos.jpg', import.meta.url).href },
+    { id: '106', titulo: 'Os Sete Maridos de Evelyn Hugo',autor: 'Taylor Jenkins Reid', genero: 'romance', preco: 69.90, imagem: new URL('@/assets/images/os_sete_maridos_de_evelyn_hugo.jpg', import.meta.url).href },
+    { id: '107', titulo: 'A Noite Passada no Telegraph Club', autor: 'Melinda Lo',genero: 'romance', preco: 69.90, imagem: new URL('@/assets/images/a_noite_passada_no_telegraph_club.jpg', import.meta.url).href },
+    { id: '108', titulo: 'Luzes do Norte', autor: 'Giu Domingues',genero: 'romance', preco: 59.90, imagem: new URL('@/assets/images/luzes_do_norte.jpg', import.meta.url).href },
+    { id: '109', titulo: 'Sombras do Sul', autor: 'Giu Domingues',genero: 'romance', preco: 59.90, imagem: new URL('@/assets/images/sombras_do_sul.jpg', import.meta.url).href },
+    { id: '110', titulo: 'Fogo & Estrelas', autor: 'Audrey Coulthurst',genero: 'romance', preco: 59.90, imagem: new URL('@/assets/images/fogo_e_estrelas.jpg', import.meta.url).href },
+    { id: '111', titulo: 'Gelo & Sombras', autor: 'Audrey Coulthurst',genero: 'romance', preco: 69.90, imagem: new URL('@/assets/images/gelo_e_sombras.jpg', import.meta.url).href },
+    
+    
+    { id: '201', titulo: 'As Crônicas de Nárnia', autor: 'C.S. Lewis',genero: 'fantasia', preco: 89.00, imagem: new URL('@/assets/images/as_cronicas_de_narnia.jpg', import.meta.url).href },
+    { id: '202', titulo: 'O Nome do Vento', autor: 'Patrick Rothfuss',genero: 'fantasia', preco: 79.90, imagem: new URL('@/assets/images/o_nome_do_vento.jpg', import.meta.url).href },
+    { id: '203', titulo: 'Ciclo da Herança', autor: 'Christopher Paolini',genero: 'fantasia', preco: 85.02, imagem: new URL('@/assets/images/ciclo_a_herança.jpg', import.meta.url).href },
+    
+    
+    { id: '301', titulo: '1984',autor: 'George Orwell', genero: 'ficcao', preco: 34.90, imagem: new URL('@/assets/images/1984.jpg', import.meta.url).href },
+    { id: '302', titulo: 'Eu, Robô', autor: 'Isaac Asimov',genero: 'ficcao', preco: 79.90, imagem: new URL('@/assets/images/eu_robo.jpg', import.meta.url).href },
+    { id: '303', titulo: 'A Guerra dos Mundos', autor: 'H.G. Wells',genero: 'ficcao', preco: 84.90, imagem: new URL('@/assets/images/a_guerra_dos_mundos.jpg', import.meta.url).href },
+    { id: '304', titulo: 'Contato', autor: 'Carl Sagan',genero: 'ficcao', preco: 69.90, imagem: new URL('@/assets/images/contato.jpg', import.meta.url).href },
+    { id: '305', titulo: 'Perdido em Marte', autor: 'Andy Weir',genero: 'ficcao', preco: 18.99, imagem: new URL('@/assets/images/perdido_em_marte.jpg', import.meta.url).href },
+    { id: '306', titulo: 'Estação 11', autor: 'Emily St. John Mandel ',genero: 'ficcao', preco: 35.91, imagem: new URL('@/assets/images/estacao_11.jpg', import.meta.url).href },
+    
+    
+    { id: '401', titulo: 'Vox', autor: 'Christina Dalcher',genero: 'distopia', preco: 40.05, imagem: new URL('@/assets/images/vox.jpg', import.meta.url).href },
+    {  id: '402', titulo: 'O Homem do Castelo Alto', autor: 'Philip K. Dick',genero: 'distopia', preco: 42.87, imagem: new URL('@/assets/images/o_homem_do_castelo_alto.jpg', import.meta.url).href },
+    { id: '403', titulo: 'O Último Homem', autor: 'Mary Shelley',genero: 'distopia', preco: 55.44, imagem: new URL('@/assets/images/o_ultimo_homem.jpg', import.meta.url).href },
+    { id: '404', titulo: 'A Estrada', autor: 'Cormac McCarthy',genero: 'distopia', preco: 90.00, imagem: new URL('@/assets/images/a_estrada.jpg', import.meta.url).href },
+    { id: '405', titulo: 'Revolução dos Bichos', autor: 'George Orwell',genero: 'distopia', preco: 34.90, imagem: new URL('@/assets/images/revolucao_dos_bichos.jpeg', import.meta.url).href },
+    
+    
+    { id: '501', titulo: 'It: A Coisa', autor: 'Stephen king',genero: 'terror', preco: 159.90, imagem: new URL('@/assets/images/it_a_coisa.jpg', import.meta.url).href },
+    { id: '502', titulo: 'O Iluminado', autor: 'Stephen King',genero: 'terror', preco: 114.90, imagem: new URL('@/assets/images/o_iluminado.jpg', import.meta.url).href },
+    { id: '503', titulo: 'Carrie, A Estranha', autor: 'Stephen King',genero: 'terror', preco: 79.90, imagem: new URL('@/assets/images/carrie_a_estranha.jpg', import.meta.url).href },
+    { id: '504', titulo: 'O Exorcista', autor: 'William Peter Blatty',genero: 'terror', preco: 59.90, imagem: new URL('@/assets/images/o_exorcista.jpg', import.meta.url).href },
+    { id: '505', titulo: 'O Silêncio dos Inocentes', autor: 'Thomas Harris',genero: 'terror', preco: 79.90, imagem: new URL('@/assets/images/o_silencio_dos_inocentes.jpg', import.meta.url).href },
+    { id: '506', titulo: 'Coraline', autor: 'Neil Gaiman',genero: 'terror', preco: 69.90, imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href },
+    { id: '507', titulo: 'O Labirinto', autor: 'Kate Mosse',genero: 'terror', preco: 99.99, imagem: new URL('@/assets/images/o_labirinto.jpg', import.meta.url).href },
   ])
 
 
@@ -229,11 +255,41 @@ onMounted(() => {
       </li>
     </ul>
   </header>
+
+
     <div v-if="paginaAtual === 'carrinho'" class="pagina-carrinho">
       <h2>🛒 Carrinho de Compras</h2>
-      <p>Seu carrinho está vazio por enquanto.</p>
-      <button @click="irParaHome">Voltar</button>
+
+      <div v-if="carrinho.length === 0">
+        <p>Seu carrinho está vazio por enquanto.</p>
+      </div>
+
+      <div v-else>
+        <ul>
+          <li v-for="item in carrinho" :key="item.livro.id" class="item-carrinho">
+            <img :src="item.livro.imagem" alt="Capa do livro" class="imagem-livro" />
+            <div class="info-livro">
+            <h3>{{ item.livro.titulo }}</h3>
+            <p>Preço: R$ {{ item.livro.preco.toFixed(2) }}</p>
+            </div>
+
+            <div class="botoes-carrinho">
+              <div class="quantidade-control">
+              <button @click="aumentarQuantidade(item.livro)">+</button>
+              <p>{{ item.quantidade }}</p>
+              <button @click="diminuirQuantidade(item.livro)">-</button>
+              </div>
+              <button @click="removerDoCarrinho(item.livro)">REMOVER</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="total-voltar">
+        <h3>Total: R$ {{ totalCarrinho.toFixed(2) }}</h3>
+        <button @click="irParaHome">Voltar</button>
+      </div>
     </div>
+
 
     <div v-else-if="paginaAtual === 'favoritos'" class="pagina-favoritos">
       <h2>Favoritos</h2>
