@@ -137,23 +137,50 @@ header h1{
   margin: 0 0 1vw 0;
 }
 .recomendados h2 {
-	font-size: vw;
+	font-size: 2.8vw;
 	margin: 2vw 0 1vw 5vw;
+  margin: 2vw auto;
+  border: solid;
+  border-radius: 10px;
+  border-color: #cfa3c1 ;
+  color: #cfa3c1;
+  width: 40%;
+  padding: 1vw;
 }
 .recomendados p {
-	font-size: 1.2vw;
-	margin: 1vw 0 1vw 0;
-
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.recomendados h4 {
+  font-style: italic;
+  color: #777;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  font-size: 1.2vw;
 }
 .recomendados img {
-   width: 200px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
+  width: 200px;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 .recomendados {
     text-align: center;
+}
+
+.botoes button {
+  background-color: #d8a9c0;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 20px 5px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .conteudo-jp {
@@ -186,15 +213,16 @@ header h1{
 	margin: 2vw 0;
 }
 .generos button{
-	border-radius: 50px;
-	background-color: #cfa3c1;
-	padding: 1vw 2vw 1vw 2vw;
-	border: none;
-	display: flex;
-	margin: 0 3vw 0 3.1vw;
-	font-size: 20px;
-	cursor: pointer;
-	transition: all 0.3s ease;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #ad7b90;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .generos button:hover {
 	transform: translateY(-5px);
@@ -208,13 +236,17 @@ header h1{
 	flex-wrap: wrap;
 	gap: 1rem;
 	justify-content: center;
+  display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 1.5rem;
+	padding: 2rem;
 }
   
 .livro {
 	background: white;
 	padding: 1rem;
-	border-radius: 1rem;
-	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 	width: 200px;
 	text-align: center;
 	position: relative;
@@ -300,8 +332,7 @@ header h1{
 .botoes .favoritar .favoritado {
 	color: red;
 }
-  
-  
+ 
 /*--------------------FOOTER------------------*/
 
 footer {
