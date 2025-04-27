@@ -27,7 +27,6 @@
   }
 
 
-
   const carrinho = ref([]);
   const favoritos = ref([]);
 
@@ -38,7 +37,7 @@
     } else {
      carrinho.value.push({ livro, quantidade: 1 });
     }
-  } 
+  }
 
   function removerDoCarrinho(livro) {
     carrinho.value = carrinho.value.filter(item => item.livro.id !== livro.id);
@@ -80,47 +79,89 @@
 
 
   const livros = ref([
-    
-    { id: '101', titulo: 'Conectadas', autor: 'Clara Alves', genero: 'romance', preco: 64.90, imagem: new URL('@/assets/images/conectadas.jpg', import.meta.url).href},
-    { id: '102', titulo: 'Canção dos Ossos', autor: 'Giu Domingues',genero: 'romance', preco: 64.90, imagem: new URL('@/assets/images/cancao_dos_ossos.jpg', import.meta.url).href },
-    { id: '103', titulo: 'Algumas garotas são assim', autor: 'Jennifer Dugan', genero: 'romance', preco: 34.90, imagem: new URL('@/assets/images/algumas_garotas_sao_assim.jpg', import.meta.url).href },
+
+    { id: '101', titulo: 'Conectadas', autor: 'Clara Alves', genero: 'romance', preco: 25.27, imagem: new URL('@/assets/images/conectadas.jpg', import.meta.url).href},
+    { id: '102', titulo: 'Canção dos Ossos', autor: 'Giu Domingues',genero: 'romance', preco: 36.30, imagem: new URL('@/assets/images/cancao_dos_ossos.jpg', import.meta.url).href },
+    { id: '103', titulo: 'Algumas garotas são assim', autor: 'Jennifer Dugan', genero: 'romance', preco: 36.24, imagem: new URL('@/assets/images/algumas_garotas_sao_assim.jpg', import.meta.url).href },
     { id: '104', titulo: 'Sua Alteza Real', autor: 'Rachel Hawkins', genero: 'romance', preco: 33.73, imagem: new URL('@/assets/images/sua_alteza_real.jpg', import.meta.url).href },
     { id: '105', titulo: 'Lembre-se de Nós', autor: 'Alyson Derrick', genero: 'romance', preco: 43.92, imagem: new URL('@/assets/images/lembre-se_de_nos.jpg', import.meta.url).href },
-    { id: '106', titulo: 'Os Sete Maridos de Evelyn Hugo',autor: 'Taylor Jenkins Reid', genero: 'romance', preco: 69.90, imagem: new URL('@/assets/images/os_sete_maridos_de_evelyn_hugo.jpg', import.meta.url).href },
-    { id: '107', titulo: 'A Noite Passada no Telegraph Club', autor: 'Melinda Lo',genero: 'romance', preco: 69.90, imagem: new URL('@/assets/images/a_noite_passada_no_telegraph_club.jpg', import.meta.url).href },
-    { id: '108', titulo: 'Luzes do Norte', autor: 'Giu Domingues',genero: 'romance', preco: 59.90, imagem: new URL('@/assets/images/luzes_do_norte.jpg', import.meta.url).href },
-    { id: '109', titulo: 'Sombras do Sul', autor: 'Giu Domingues',genero: 'romance', preco: 59.90, imagem: new URL('@/assets/images/sombras_do_sul.jpg', import.meta.url).href },
-    { id: '110', titulo: 'Fogo & Estrelas', autor: 'Audrey Coulthurst',genero: 'romance', preco: 59.90, imagem: new URL('@/assets/images/fogo_e_estrelas.jpg', import.meta.url).href },
-    { id: '111', titulo: 'Gelo & Sombras', autor: 'Audrey Coulthurst',genero: 'romance', preco: 69.90, imagem: new URL('@/assets/images/gelo_e_sombras.jpg', import.meta.url).href },
-    
-    
-    { id: '201', titulo: 'As Crônicas de Nárnia', autor: 'C.S. Lewis',genero: 'fantasia', preco: 89.00, imagem: new URL('@/assets/images/as_cronicas_de_narnia.jpg', import.meta.url).href },
-    { id: '202', titulo: 'O Nome do Vento', autor: 'Patrick Rothfuss',genero: 'fantasia', preco: 79.90, imagem: new URL('@/assets/images/o_nome_do_vento.jpg', import.meta.url).href },
-    { id: '203', titulo: 'Ciclo da Herança', autor: 'Christopher Paolini',genero: 'fantasia', preco: 85.02, imagem: new URL('@/assets/images/ciclo_a_herança.jpg', import.meta.url).href },
-    
-    
-    { id: '301', titulo: '1984',autor: 'George Orwell', genero: 'ficcao', preco: 34.90, imagem: new URL('@/assets/images/1984.jpg', import.meta.url).href },
-    { id: '302', titulo: 'Eu, Robô', autor: 'Isaac Asimov',genero: 'ficcao', preco: 79.90, imagem: new URL('@/assets/images/eu_robo.jpg', import.meta.url).href },
-    { id: '303', titulo: 'A Guerra dos Mundos', autor: 'H.G. Wells',genero: 'ficcao', preco: 84.90, imagem: new URL('@/assets/images/a_guerra_dos_mundos.jpg', import.meta.url).href },
-    { id: '304', titulo: 'Contato', autor: 'Carl Sagan',genero: 'ficcao', preco: 69.90, imagem: new URL('@/assets/images/contato.jpg', import.meta.url).href },
+    { id: '106', titulo: 'Os Sete Maridos de Evelyn Hugo',autor: 'Taylor Jenkins Reid', genero: 'romance', preco: 48.90, imagem: new URL('@/assets/images/os_sete_maridos_de_evelyn_hugo.jpg', import.meta.url).href },
+    { id: '107', titulo: 'A Noite Passada no Telegraph Club', autor: 'Melinda Lo',genero: 'romance', preco: 41.90, imagem: new URL('@/assets/images/a_noite_passada_no_telegraph_club.jpg', import.meta.url).href },
+    { id: '108', titulo: 'Luzes do Norte', autor: 'Giu Domingues',genero: 'romance', preco: 44.17, imagem: new URL('@/assets/images/luzes_do_norte.jpg', import.meta.url).href },
+    { id: '109', titulo: 'Sombras do Sul', autor: 'Giu Domingues',genero: 'romance', preco: 44.93, imagem: new URL('@/assets/images/sombras_do_sul.jpg', import.meta.url).href },
+    { id: '110', titulo: 'Fogo & Estrelas', autor: 'Audrey Coulthurst',genero: 'romance', preco: 42.94, imagem: new URL('@/assets/images/fogo_e_estrelas.jpg', import.meta.url).href },
+    { id: '111', titulo: 'Gelo & Sombras', autor: 'Audrey Coulthurst',genero: 'romance', preco: 54.96, imagem: new URL('@/assets/images/gelo_e_sombras.jpg', import.meta.url).href },
+    { id: '112', titulo: 'Ultima parada', autor: 'Casey McQuiston',genero: 'romance', preco: 22.99, imagem: new URL('@/assets/images/ultima_parada.jpg', import.meta.url).href },
+    { id: '113', titulo: 'Imogen, obviamente', autor: 'Becky Albertalli',genero: 'romance', preco: 37.10, imagem: new URL('@/assets/images/imogen_obviamente.jpg', import.meta.url).href },
+    { id: '114', titulo: 'É assim que se perde a guerra do tempo', autor: ' Amal El-Mohtar e Max Gladstone',genero: 'romance', preco: 48.46, imagem: new URL('@/assets/images/e_assim_que_se_perde_a_guerra_do_tempo.jpg', import.meta.url).href },
+    { id: '115', titulo: 'Cinderela está morta', autor: 'Kalynn Bayron',genero: 'romance', preco: 24.69, imagem: new URL('@/assets/images/cinderela_esta_morta.jpg', import.meta.url).href },
+
+
+    { id: '201', titulo: 'As Crônicas de Nárnia', autor: 'C.S. Lewis',genero: 'fantasia', preco: 33.16, imagem: new URL('@/assets/images/as_cronicas_de_narnia.jpg', import.meta.url).href },
+    { id: '202', titulo: 'O Nome do Vento', autor: 'Patrick Rothfuss',genero: 'fantasia', preco: 55.99, imagem: new URL('@/assets/images/o_nome_do_vento.jpg', import.meta.url).href },
+    { id: '203', titulo: 'Ciclo A Herança', autor: 'Christopher Paolini',genero: 'fantasia', preco: 85.02, imagem: new URL('@/assets/images/ciclo_a_herança.jpg', import.meta.url).href },
+    { id: '204', titulo: 'Nevernight: A Sombra do Corvo', autor: 'Jay Kristoff',genero: 'fantasia', preco: 67.16, imagem: new URL('@/assets/images/nevernight.jpeg', import.meta.url).href },
+    { id: '205', titulo: 'Godsgrave: O Espetáculo Sangrento', autor: 'Jay Kristoff',genero: 'fantasia', preco: 71.87, imagem: new URL('@/assets/images/godsgrave.jpeg', import.meta.url).href },
+    { id: '206', titulo: 'Darkdawn: As Cinzas da República', autor: 'Jay Kristoff',genero: 'fantasia', preco: 77.05, imagem: new URL('@/assets/images/darkdawn.jpeg', import.meta.url).href },
+    { id: '207', titulo: 'A Quinta Estação', autor: 'N.K. Jemisin',genero: 'fantasia', preco: 52.50, imagem: new URL('@/assets/images/a_quinta_estacao.jpeg', import.meta.url).href },
+    { id: '208', titulo: 'O Portão do Obelisco', autor: 'N.K. Jemisin',genero: 'fantasia', preco: 73.19, imagem: new URL('@/assets/images/o_portao_do_obelisco.jpeg', import.meta.url).href },
+    { id: '209', titulo: 'O Céu de Pedra', autor: 'N.K. Jemisin',genero: 'fantasia', preco: 68.60, imagem: new URL('@/assets/images/o_ceu_de_pedra.jpeg', import.meta.url).href },
+    { id: '210', titulo: 'Sombra e Ossos', autor: 'Leigh Bardugo',genero: 'fantasia', preco: 54.92, imagem: new URL('@/assets/images/sombra_e_ossos.jpeg', import.meta.url).href },
+    { id: '211', titulo: 'Sol e Tormenta', autor: 'Leigh Bardugo',genero: 'fantasia', preco: 47.55, imagem: new URL('@/assets/images/sol_e_tormenta.jpeg', import.meta.url).href },
+    { id: '212', titulo: 'Ruína em Ascensão', autor: 'Leigh Bardugo',genero: 'fantasia', preco: 54.57, imagem: new URL('@/assets/images/ruina_em_ascensao.jpeg', import.meta.url).href },
+    { id: '213', titulo: 'Mistborn: O Império Final', autor: 'Branden Sanderson',genero: 'fantasia', preco: 70.02, imagem: new URL('@/assets/images/mistborn_o_imperio_final.jpeg', import.meta.url).href },
+    { id: '214', titulo: 'Mistborn: O Poço da Ascensão', autor: 'Branden Sanderson',genero: 'fantasia', preco: 71.22, imagem: new URL('@/assets/images/mistborn_poco_da_ascensao.jpeg', import.meta.url).href },
+    { id: '215', titulo: 'Mistborn: O Herói das Eras', autor: 'Branden Sanderson',genero: 'fantasia', preco: 75.96, imagem: new URL('@/assets/images/mistborn_o_heroi_das_eras.jpeg', import.meta.url).href },
+
+
+    { id: '301', titulo: '1984',autor: 'George Orwell', genero: 'ficcao', preco: 16.86, imagem: new URL('@/assets/images/1984.jpg', import.meta.url).href },
+    { id: '302', titulo: 'Eu, Robô', autor: 'Isaac Asimov',genero: 'ficcao', preco: 23.47, imagem: new URL('@/assets/images/eu_robo.jpg', import.meta.url).href },
+    { id: '303', titulo: 'A Guerra dos Mundos', autor: 'H.G. Wells',genero: 'ficcao', preco: 47.49, imagem: new URL('@/assets/images/a_guerra_dos_mundos.jpg', import.meta.url).href },
+    { id: '304', titulo: 'Contato', autor: 'Carl Sagan',genero: 'ficcao', preco: 54.08, imagem: new URL('@/assets/images/contato.jpg', import.meta.url).href },
     { id: '305', titulo: 'Perdido em Marte', autor: 'Andy Weir',genero: 'ficcao', preco: 18.99, imagem: new URL('@/assets/images/perdido_em_marte.jpg', import.meta.url).href },
     { id: '306', titulo: 'Estação 11', autor: 'Emily St. John Mandel ',genero: 'ficcao', preco: 35.91, imagem: new URL('@/assets/images/estacao_11.jpg', import.meta.url).href },
-    
-    
-    { id: '401', titulo: 'Vox', autor: 'Christina Dalcher',genero: 'distopia', preco: 40.05, imagem: new URL('@/assets/images/vox.jpg', import.meta.url).href },
+    { id: '307', titulo: 'Fundação', autor: 'Isaac Asimov',genero: 'ficcao', preco: 49.08, imagem: new URL('@/assets/images/fundacao.jpg', import.meta.url).href },
+    { id: '308', titulo: 'Fundação e Império', autor: 'Isaac Asimov',genero: 'ficcao', preco: 61.05, imagem: new URL('@/assets/images/fundacao_e_imperio.jpg', import.meta.url).href },
+    { id: '309', titulo: 'Segunda Fundação', autor: 'Isaac Asimov',genero: 'ficcao', preco: 57.89, imagem: new URL('@/assets/images/segunda_fundacao.jpg', import.meta.url).href },
+    { id: '310', titulo: 'Limites da Fundação', autor: 'Isaac Asimov',genero: 'ficcao', preco: 69.17, imagem: new URL('@/assets/images/limites_da_fundacao.jpg', import.meta.url).href },
+    { id: '311', titulo: 'Fundação e Terra', autor: 'Isaac Asimov',genero: 'ficcao', preco: 55.22, imagem: new URL('@/assets/images/fundacao_e_terra.jpg', import.meta.url).href },
+    { id: '312', titulo: 'Prelúdio à Fundação', autor: 'Isaac Asimov',genero: 'ficcao', preco: 61.01, imagem: new URL('@/assets/images/preludio_a_fundacao.jpg', import.meta.url).href },
+    { id: '313', titulo: 'Origens da Fundação', autor: 'Isaac Asimov',genero: 'ficcao', preco: 99.99, imagem: new URL('@/assets/images/origens_da_fundacao.jpg', import.meta.url).href },
+    { id: '314', titulo: 'Vilão', autor: 'V.E Schwab',genero: 'ficcao', preco: 42.78, imagem: new URL('@/assets/images/vilao.jpg', import.meta.url).href },
+    { id: '315', titulo: 'Vingança', autor: 'V.E Schwab',genero: 'ficcao', preco: 47.94, imagem: new URL('@/assets/images/vinganca.jpg', import.meta.url).href },
+
+    { id: '401', titulo: 'Vox', autor: 'Christina Dalcher',genero: 'distopia', preco: 19.90, imagem: new URL('@/assets/images/vox.jpg', import.meta.url).href },
     {  id: '402', titulo: 'O Homem do Castelo Alto', autor: 'Philip K. Dick',genero: 'distopia', preco: 42.87, imagem: new URL('@/assets/images/o_homem_do_castelo_alto.jpg', import.meta.url).href },
     { id: '403', titulo: 'O Último Homem', autor: 'Mary Shelley',genero: 'distopia', preco: 55.44, imagem: new URL('@/assets/images/o_ultimo_homem.jpg', import.meta.url).href },
-    { id: '404', titulo: 'A Estrada', autor: 'Cormac McCarthy',genero: 'distopia', preco: 90.00, imagem: new URL('@/assets/images/a_estrada.jpg', import.meta.url).href },
-    { id: '405', titulo: 'Revolução dos Bichos', autor: 'George Orwell',genero: 'distopia', preco: 34.90, imagem: new URL('@/assets/images/revolucao_dos_bichos.jpeg', import.meta.url).href },
-    
-    
-    { id: '501', titulo: 'It: A Coisa', autor: 'Stephen king',genero: 'terror', preco: 159.90, imagem: new URL('@/assets/images/it_a_coisa.jpg', import.meta.url).href },
-    { id: '502', titulo: 'O Iluminado', autor: 'Stephen King',genero: 'terror', preco: 114.90, imagem: new URL('@/assets/images/o_iluminado.jpg', import.meta.url).href },
-    { id: '503', titulo: 'Carrie, A Estranha', autor: 'Stephen King',genero: 'terror', preco: 79.90, imagem: new URL('@/assets/images/carrie_a_estranha.jpg', import.meta.url).href },
-    { id: '504', titulo: 'O Exorcista', autor: 'William Peter Blatty',genero: 'terror', preco: 59.90, imagem: new URL('@/assets/images/o_exorcista.jpg', import.meta.url).href },
-    { id: '505', titulo: 'O Silêncio dos Inocentes', autor: 'Thomas Harris',genero: 'terror', preco: 79.90, imagem: new URL('@/assets/images/o_silencio_dos_inocentes.jpg', import.meta.url).href },
-    { id: '506', titulo: 'Coraline', autor: 'Neil Gaiman',genero: 'terror', preco: 69.90, imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href },
+    { id: '404', titulo: 'A Estrada', autor: 'Cormac McCarthy',genero: 'distopia', preco: 30.00, imagem: new URL('@/assets/images/a_estrada.jpg', import.meta.url).href },
+    { id: '405', titulo: 'Revolução dos Bichos', autor: 'George Orwell',genero: 'distopia', preco: 16.78, imagem: new URL('@/assets/images/revolucao_dos_bichos.jpeg', import.meta.url).href },
+    { id: '406', titulo: 'O Ceifador', autor: 'Neal Shusterman',genero: 'distopia', preco: 55.93, imagem: new URL('@/assets/images/o_ceifador.jpg', import.meta.url).href },
+    { id: '407', titulo: 'A Nuvem', autor: 'Neal Shusterman',genero: 'distopia', preco: 62.83, imagem: new URL('@/assets/images/a_nuvem.jpg', import.meta.url).href },
+    { id: '408', titulo: 'O Timbre', autor: 'Neal Shusterman',genero: 'distopia', preco: 51.96, imagem: new URL('@/assets/images/o_timbre.jpg', import.meta.url).href },
+    { id: '409', titulo: 'O Conto da Aia', autor: 'Margaret Atwood',genero: 'distopia', preco: 20.99, imagem: new URL('@/assets/images/o_conto_da_aia.jpg', import.meta.url).href },
+    { id: '410', titulo: 'Jogador Número Um', autor: 'Ernest Cline',genero: 'distopia', preco: 19.99, imagem: new URL('@/assets/images/jogador_numero_um.jpeg', import.meta.url).href },
+    { id: '411', titulo: 'O Doador de Memórias', autor: 'Lois Lowry',genero: 'distopia', preco: 15.77, imagem: new URL('@/assets/images/o_doador_de_memorias.jpeg', import.meta.url).href },
+    { id: '412', titulo: 'Estação Onze', autor: 'Emily St. John Mandel',genero: 'distopia', preco: 35.91, imagem: new URL('@/assets/images/estacao_11.jpg', import.meta.url).href },
+    { id: '413', titulo: 'Silo', autor: 'Hugh Howey',genero: 'distopia', preco: 49.41, imagem: new URL('@/assets/images/silo.jpeg', import.meta.url).href },
+    { id: '414', titulo: 'Ordem', autor: 'Hugh Howey',genero: 'distopia', preco: 23.94, imagem: new URL('@/assets/images/ordem.jpg', import.meta.url).href },
+    { id: '415', titulo: 'Legado', autor: 'Hugh Howey',genero: 'distopia', preco: 29.94, imagem: new URL('@/assets/images/legado.jpg', import.meta.url).href },
+
+
+    { id: '501', titulo: 'It: A Coisa', autor: 'Stephen king',genero: 'terror', preco: 106.20, imagem: new URL('@/assets/images/it_a_coisa.jpg', import.meta.url).href },
+    { id: '502', titulo: 'O Iluminado', autor: 'Stephen King',genero: 'terror', preco: 59.30, imagem: new URL('@/assets/images/o_iluminado.jpg', import.meta.url).href },
+    { id: '503', titulo: 'Carrie, A Estranha', autor: 'Stephen King',genero: 'terror', preco: 49.06, imagem: new URL('@/assets/images/carrie_a_estranha.jpg', import.meta.url).href },
+    { id: '504', titulo: 'O Exorcista', autor: 'William Peter Blatty',genero: 'terror', preco: 38.49, imagem: new URL('@/assets/images/o_exorcista.jpg', import.meta.url).href },
+    { id: '505', titulo: 'O Silêncio dos Inocentes', autor: 'Thomas Harris',genero: 'terror', preco: 58.28, imagem: new URL('@/assets/images/o_silencio_dos_inocentes.jpg', import.meta.url).href },
+    { id: '506', titulo: 'Coraline', autor: 'Neil Gaiman',genero: 'terror', preco: 58.85, imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href },
     { id: '507', titulo: 'O Labirinto', autor: 'Kate Mosse',genero: 'terror', preco: 99.99, imagem: new URL('@/assets/images/o_labirinto.jpg', import.meta.url).href },
+    { id: '508', titulo: 'Hell House: A Casa do Inferno', autor: 'Richard Matheson',genero: 'terror', preco: 57.17, imagem: new URL('@/assets/images/hell_house.jpg', import.meta.url).href },
+    { id: '509', titulo: 'A Noite dos Mortos-Vivos', autor: ' John Russo',genero: 'terror', preco: 17.43, imagem: new URL('@/assets/images/a_noite_dos_mortos_vivos.jpg', import.meta.url).href },
+    { id: '510', titulo: 'Gótico Mexicano', autor: 'Silvia Moreno-Garcia',genero: 'terror', preco: 45.94, imagem: new URL('@/assets/images/gotico_mexicano.jpg', import.meta.url).href },
+    { id: '511', titulo: 'A Garota da Casa ao Lado', autor: 'Jack Ketchum',genero: 'terror', preco: 62.11, imagem: new URL('@/assets/images/a_garota_da_casa_ao_lado.jpg', import.meta.url).href },
+    { id: '512', titulo: 'Os Condenados', autor: 'Andrew Pyper',genero: 'terror', preco: 67.61, imagem: new URL('@/assets/images/os_condenados.jpg', import.meta.url).href },
+    { id: '513', titulo: 'Hex: Uma Bruxa Clássica', autor: 'Thomas Olde Heuvelt',genero: 'terror', preco: 57.32, imagem: new URL('@/assets/images/hex.jpg', import.meta.url).href },
+    { id: '514', titulo: 'O Demonologista', autor: 'Andrew Pyper',genero: 'terror', preco: 38.45, imagem: new URL('@/assets/images/o_demonologista.jpg', import.meta.url).href },
+    { id: '515', titulo: 'A Morte da Sra Westaway', autor: 'Ruth Ware',genero: 'terror', preco: 48.23, imagem: new URL('@/assets/images/a_morte_da_sra_westaway.jpg', import.meta.url).href },
   ])
 
 
@@ -215,7 +256,6 @@ onMounted(() => {
   setInterval(proximoLivro, 10000)
 })
 </script>
-
 
 <template>
 <body>
@@ -363,11 +403,7 @@ onMounted(() => {
     </div>
     </div>
   </main>
-
-
-
   <footer>
-
     <div class="redessociais">
       <span class="fa-brands fa-square-instagram"></span>
       <span class="fa-brands fa-square-facebook"></span>
