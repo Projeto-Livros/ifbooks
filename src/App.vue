@@ -61,12 +61,6 @@
   );
 
 
-  function adicionarAosFavoritos(livro) {
-    if (!favoritos.value.includes(livro)) {
-      favoritos.value.push(livro);
-    }
-  }
-
   function livroNoCarrinho(livro) {
     return carrinho.value.includes(livro);
   }
@@ -75,7 +69,23 @@
     return favoritos.value.includes(livro);
   }
 
+  function adicionarAosFavoritos(livro) {
+  const item = favoritos.value.find(item => item.livro.id === livro.id);
+    if (item) {
+      item.quantidade++;
+    } else {
+     favoritos.value.push({ livro, quantidade: 1 });
+    }
+  }
 
+  const totalFavoritos = computed(() =>
+    favoritos.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0)
+  );
+
+  function removerFavoritos(livro) {
+    favoritos.value = favoritos.value.filter(item => item.livro.id !== livro.id);
+  }
+  
 
 
   const livros = ref([
@@ -331,11 +341,38 @@ onMounted(() => {
     </div>
 
 
+
     <div v-else-if="paginaAtual === 'favoritos'" class="pagina-favoritos">
       <h2>Favoritos</h2>
+
+    <div v-if="favoritos.length === 0">  
       <p>Aqui vão aparecer seus livros favoritos futuramente!</p>
-      <button @click="irParaHome">Voltar</button>
     </div>
+
+    <div v-else>
+      <ul>
+        <li v-for="item in favoritos" :key="item.livro.id" class="item-favoritos">
+          <img :src="item.livro.imagem" alt="Capa do livro" class="imagem-livro">
+          <div class="if-livro">
+            <h3>{{ item.livro.titulo }}</h3>
+            <p>Preço: R$ {{ totalFavoritos.toFixed(2) }}</p>
+          </div>
+
+          <div class="bnts-fav">
+            <button @click="removerFavoritos(item.livro)">REMOVER</button>
+            <button @click="adicionarAoCarrinho(item.livro)">ADICIONAR AO CARRINHO</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="ttl-volt">
+      <div class="total-voltar">
+        <h3>Total: R$ {{ totalFavoritos.toFixed(2) }}</h3>
+        <button @click="irParaHome">Voltar</button>
+    </div>
+    </div>
+    </div>
+ 
 
 
 
@@ -396,9 +433,6 @@ onMounted(() => {
         {{ livroNoCarrinho(livro) ? "Adicionado ✅" : "Adicionar ao Carrinho 🛒" }}
       </button>
 
-      <button class="favoritar" @click="adicionarAosFavoritos(livro)">
-        <span :class="['fa-heart', livroNosFavoritos(livro) ? 'favoritado' : '']"></span>
-      </button>
     </div>
     </div>
     </div>
