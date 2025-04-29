@@ -75,8 +75,7 @@
     return favoritos.value.includes(livro);
   }
 
-
-
+    
 
   const livros = ref([
 
@@ -165,6 +164,8 @@
   ])
 
 
+
+
 const livro = ref([
   {
     titulo: '1984',
@@ -226,6 +227,10 @@ const livro = ref([
     descricao: 'Coraline descobre uma porta secreta em sua casa que leva a um mundo paralelo, onde tudo parece melhor – até demais. Lá, sua "outra mãe" quer prendê-la para sempre. Coraline precisa ser corajosa para salvar a si mesma e sua família.',
     imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href
   }
+
+
+
+
 
 ])
 const indiceAtual = ref(0)
