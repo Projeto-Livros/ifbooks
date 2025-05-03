@@ -75,7 +75,7 @@
     return favoritos.value.includes(livro);
   }
 
-    
+
 
   const livros = ref([
 
@@ -341,8 +341,6 @@ onMounted(() => {
       <p>Aqui vão aparecer seus livros favoritos futuramente!</p>
       <button @click="irParaHome">Voltar</button>
     </div>
-
-
 
   <main v-else>
     <div class="recomendados">
