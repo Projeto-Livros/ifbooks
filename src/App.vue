@@ -56,9 +56,10 @@
     removerDoCarrinho(livro);
     }
   }
-  const totalCarrinho = computed(() =>
-    carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0)
-  );
+  const totalCarrinho = computed(() => {
+  const total = carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0);
+    return inscrito.value ? total * 0.9 : total; 
+  });
 
 
   function livroNoCarrinho(livro) {
@@ -428,9 +429,11 @@ onMounted(() => {
         </span>
       </p>
 
-    <div class="botoes">
-      <button @click="adicionarAoCarrinho(livro)" :disabled="livroNoCarrinho(livro)">
-        {{ livroNoCarrinho(livro) ? "Adicionado ✅" : "Adicionar ao Carrinho 🛒" }}
+      <div class="botoes">
+      <button
+        @click="adicionarAoCarrinho(livro)"
+        :disabled="carrinho.some(item => item.livro.id === livro.id)">
+        {{ carrinho.some(item => item.livro.id === livro.id) ? "Adicionado ✅" : "Adicionar ao Carrinho 🛒" }}
       </button>
 
     </div>
