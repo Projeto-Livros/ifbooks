@@ -12,18 +12,20 @@
     paginaAtual.value = "favoritos";
   }
 
-  const emailUsuario = ref('');
-  const inscrito = ref(false);
-
-  function inscreverEmail() {
-    if (emailUsuario.value.trim() !== '') {
-      inscrito.value = true;
-    }
-  }
-
-
   function irParaHome() {
     paginaAtual.value = "home";
+  }
+
+  const codigoCupom = ref('');
+  const cupomValido = ref(false);
+  const cupomCorreto = 'LIVROS&LETRAS100';
+
+  function validarCupom() {
+    if (codigoCupom.value.trim().toUpperCase() === cupomCorreto) {
+      cupomValido.value = true;
+    } else {
+      alert('Cupom inválido. Tente novamente.');
+    }
   }
 
 
@@ -58,13 +60,14 @@
   }
   const totalCarrinho = computed(() => {
   const total = carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0);
-    return inscrito.value ? total * 0.9 : total; 
+    return cupomValido.value ? total * 0.9 : total; 
   });
 
 
   function livroNoCarrinho(livro) {
-    return carrinho.value.includes(livro);
+    return carrinho.value.some(item => item.livro.id === livro.id);
   }
+
 
   function livroNosFavoritos(livro) {
     return favoritos.value.includes(livro);
@@ -339,6 +342,19 @@ onMounted(() => {
         <h3>Total: R$ {{ totalCarrinho.toFixed(2) }}</h3>
         <button @click="irParaHome">Voltar</button>
       </div>
+
+    <div class="cupom-desconto">
+    <template v-if="!cupomValido">
+      <input
+        type="text"
+        placeholder="Insira seu cupom de desconto!"
+        v-model="codigoCupom"/>
+        <button @click="validarCupom">Aplicar Cupom</button>
+      </template>
+      <template v-else>
+        <p class="confirmacao">🎉 Parabéns! Você ganhou 10% de desconto!</p>
+      </template>
+    </div>
     </div>
 
 
@@ -457,19 +473,6 @@ onMounted(() => {
           <span class="fa-solid fa-envelope"> livros&letras@gmail.com</span>
         </li>
       </ul>
-    </div>
-
-    <div class="inscrevase">
-    <template v-if="!inscrito">
-      <input
-        type="email"
-        placeholder="Insira seu email"
-        v-model="emailUsuario"/>
-      <button @click="inscreverEmail">Inscreva-se</button>
-    </template>
-    <template v-else>
-      <p class="confirmacao">🎉 Parabéns! Você ganhou 10% de desconto!</p>
-    </template>
     </div>
 
     <div class="nome">

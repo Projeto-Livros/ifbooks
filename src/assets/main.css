@@ -386,14 +386,14 @@ footer > div {
 	margin-bottom: 0.3rem;
 }
 
-.inscrevase {
+.cupom-desconto {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-top: 2vw;
 }
 
-.inscrevase input {
+.cupom-desconto input {
 	margin: 0.5vw 0;
 	padding: 0.5vw;
 	width: 250px;
@@ -402,7 +402,7 @@ footer > div {
 	font-size: 1rem;
 }
 
-.inscrevase button {
+.cupom-desconto button {
 	padding: 0.5vw 1vw;
 	background-color: #ad7b90;
 	color: white;
@@ -413,7 +413,7 @@ footer > div {
 	transition: background-color 0.3s;
 }
 
-.inscrevase button:hover {
+.cupom-desconto button:hover {
 	background-color: #8c5e6b;
 }
 
