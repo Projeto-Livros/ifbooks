@@ -18,7 +18,7 @@
 
   const codigoCupom = ref('');
   const cupomValido = ref(false);
-  const cupomCorreto = 'LIVROS&LETRAS100';
+  const cupomCorreto = 'LIVROS&LETRAS30';
 
   function validarCupom() {
     if (codigoCupom.value.trim().toUpperCase() === cupomCorreto) {
@@ -60,7 +60,7 @@
   }
   const totalCarrinho = computed(() => {
   const total = carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0);
-    return cupomValido.value ? total * 0.9 : total; 
+    return cupomValido.value ? total * 0.7 : total; 
   });
 
 
@@ -267,14 +267,19 @@ function filtrar(genero) {
   }
 }
 onMounted(() => {
-  setInterval(proximoLivro, 10000)
+  setInterval(proximoLivro, 5000)
 })
 </script>
 
 <template>
 <body>
   <header>
-    <h1>Livros & Letras</h1>
+    <div class="logo">
+      <img src="/public/icon-site.ico" alt="logo">
+      <h1> Livros & Letras</h1>
+
+    </div>
+    
     <div class="pesquisa">
       <input type="text" placeholder="Pesquisar...">
       <FontAwesomeIcon icon="magnifying-glass" class="iconePesquisa"/>
@@ -352,7 +357,7 @@ onMounted(() => {
         <button @click="validarCupom">Aplicar Cupom</button>
       </template>
       <template v-else>
-        <p class="confirmacao">🎉 Parabéns! Você ganhou 10% de desconto!</p>
+        <p class="confirmacao">🎉 Parabéns! Você ganhou 30% de desconto!</p>
       </template>
     </div>
     </div>
