@@ -91,7 +91,6 @@
   }
   
 
-
   const livros = ref([
 
     { id: '101', titulo: 'Conectadas', autor: 'Clara Alves', genero: 'romance', preco: 25.27, imagem: new URL('@/assets/images/conectadas.jpg', import.meta.url).href},
@@ -179,6 +178,8 @@
   ])
 
 
+
+
 const livro = ref([
   {
     titulo: '1984',
@@ -240,6 +241,10 @@ const livro = ref([
     descricao: 'Coraline descobre uma porta secreta em sua casa que leva a um mundo paralelo, onde tudo parece melhor – até demais. Lá, sua "outra mãe" quer prendê-la para sempre. Coraline precisa ser corajosa para salvar a si mesma e sua família.',
     imagem: new URL('@/assets/images/coraline.jpg', import.meta.url).href
   }
+
+
+
+
 
 ])
 const indiceAtual = ref(0)
@@ -371,6 +376,7 @@ onMounted(() => {
       <p>Aqui vão aparecer seus livros favoritos futuramente!</p>
     </div>
 
+
     <div v-else>
       <ul>
         <li v-for="item in favoritos" :key="item.livro.id" class="item-favoritos">
@@ -395,9 +401,6 @@ onMounted(() => {
     </div>
     </div>
  
-
-
-
   <main v-else>
     <div class="recomendados">
     <h2>Recomendados</h2>
