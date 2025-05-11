@@ -12,18 +12,20 @@
     paginaAtual.value = "favoritos";
   }
 
-  const emailUsuario = ref('');
-  const inscrito = ref(false);
-
-  function inscreverEmail() {
-    if (emailUsuario.value.trim() !== '') {
-      inscrito.value = true;
-    }
-  }
-
-
   function irParaHome() {
     paginaAtual.value = "home";
+  }
+
+  const codigoCupom = ref('');
+  const cupomValido = ref(false);
+  const cupomCorreto = 'LIVROS&LETRAS30';
+
+  function validarCupom() {
+    if (codigoCupom.value.trim().toUpperCase() === cupomCorreto) {
+      cupomValido.value = true;
+    } else {
+      alert('Cupom inválido. Tente novamente.');
+    }
   }
 
 
@@ -56,26 +58,38 @@
     removerDoCarrinho(livro);
     }
   }
-  const totalCarrinho = computed(() =>
-    carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0)
-  );
+  const totalCarrinho = computed(() => {
+  const total = carrinho.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0);
+    return cupomValido.value ? total * 0.7 : total; 
+  });
 
-
-  function adicionarAosFavoritos(livro) {
-    if (!favoritos.value.includes(livro)) {
-      favoritos.value.push(livro);
-    }
-  }
 
   function livroNoCarrinho(livro) {
-    return carrinho.value.includes(livro);
+    return carrinho.value.some(item => item.livro.id === livro.id);
   }
+
 
   function livroNosFavoritos(livro) {
     return favoritos.value.includes(livro);
   }
 
+  function adicionarAosFavoritos(livro) {
+  const item = favoritos.value.find(item => item.livro.id === livro.id);
+    if (item) {
+      item.quantidade++;
+    } else {
+     favoritos.value.push({ livro, quantidade: 1 });
+    }
+  }
 
+  const totalFavoritos = computed(() =>
+    favoritos.value.reduce((total, item) => total + item.livro.preco * item.quantidade, 0)
+  );
+
+  function removerFavoritos(livro) {
+    favoritos.value = favoritos.value.filter(item => item.livro.id !== livro.id);
+  }
+  
 
   const livros = ref([
 
@@ -258,14 +272,19 @@ function filtrar(genero) {
   }
 }
 onMounted(() => {
-  setInterval(proximoLivro, 10000)
+  setInterval(proximoLivro, 5000)
 })
 </script>
 
 <template>
 <body>
   <header>
-    <h1>Livros & Letras</h1>
+    <div class="logo">
+      <img src="/public/icon-site.ico" alt="logo">
+      <h1> Livros & Letras</h1>
+
+    </div>
+    
     <div class="pesquisa">
       <input type="text" placeholder="Pesquisar...">
       <FontAwesomeIcon icon="magnifying-glass" class="iconePesquisa"/>
@@ -333,15 +352,55 @@ onMounted(() => {
         <h3>Total: R$ {{ totalCarrinho.toFixed(2) }}</h3>
         <button @click="irParaHome">Voltar</button>
       </div>
+
+    <div class="cupom-desconto">
+    <template v-if="!cupomValido">
+      <input
+        type="text"
+        placeholder="Insira seu cupom de desconto!"
+        v-model="codigoCupom"/>
+        <button @click="validarCupom">Aplicar Cupom</button>
+      </template>
+      <template v-else>
+        <p class="confirmacao">🎉 Parabéns! Você ganhou 30% de desconto!</p>
+      </template>
     </div>
+    </div>
+
 
 
     <div v-else-if="paginaAtual === 'favoritos'" class="pagina-favoritos">
       <h2>Favoritos</h2>
+
+    <div v-if="favoritos.length === 0">  
       <p>Aqui vão aparecer seus livros favoritos futuramente!</p>
-      <button @click="irParaHome">Voltar</button>
     </div>
 
+
+    <div v-else>
+      <ul>
+        <li v-for="item in favoritos" :key="item.livro.id" class="item-favoritos">
+          <img :src="item.livro.imagem" alt="Capa do livro" class="imagem-livro">
+          <div class="if-livro">
+            <h3>{{ item.livro.titulo }}</h3>
+            <p>Preço: R$ {{ totalFavoritos.toFixed(2) }}</p>
+          </div>
+
+          <div class="bnts-fav">
+            <button @click="removerFavoritos(item.livro)">REMOVER</button>
+            <button @click="adicionarAoCarrinho(item.livro)">ADICIONAR AO CARRINHO</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="ttl-volt">
+      <div class="total-voltar">
+        <h3>Total: R$ {{ totalFavoritos.toFixed(2) }}</h3>
+        <button @click="irParaHome">Voltar</button>
+    </div>
+    </div>
+    </div>
+ 
   <main v-else>
     <div class="recomendados">
     <h2>Recomendados</h2>
@@ -394,14 +453,13 @@ onMounted(() => {
         </span>
       </p>
 
-    <div class="botoes">
-      <button @click="adicionarAoCarrinho(livro)" :disabled="livroNoCarrinho(livro)">
-        {{ livroNoCarrinho(livro) ? "Adicionado ✅" : "Adicionar ao Carrinho 🛒" }}
+      <div class="botoes">
+      <button
+        @click="adicionarAoCarrinho(livro)"
+        :disabled="carrinho.some(item => item.livro.id === livro.id)">
+        {{ carrinho.some(item => item.livro.id === livro.id) ? "Adicionado ✅" : "Adicionar ao Carrinho 🛒" }}
       </button>
 
-      <button class="favoritar" @click="adicionarAosFavoritos(livro)">
-        <span :class="['fa-heart', livroNosFavoritos(livro) ? 'favoritado' : '']"></span>
-      </button>
     </div>
     </div>
     </div>
@@ -423,19 +481,6 @@ onMounted(() => {
           <span class="fa-solid fa-envelope"> livros&letras@gmail.com</span>
         </li>
       </ul>
-    </div>
-
-    <div class="inscrevase">
-    <template v-if="!inscrito">
-      <input
-        type="email"
-        placeholder="Insira seu email"
-        v-model="emailUsuario"/>
-      <button @click="inscreverEmail">Inscreva-se</button>
-    </template>
-    <template v-else>
-      <p class="confirmacao">🎉 Parabéns! Você ganhou 10% de desconto!</p>
-    </template>
     </div>
 
     <div class="nome">
